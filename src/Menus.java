@@ -3,9 +3,11 @@ import javax.swing.*;
 /**
  * Created by sheverdinK on 21.11.2015.
  */
-public class Menus {
-    JMenuBar jMenuBar = new JMenuBar ();
-    JMenu fileMenu, helpMenu, editMenu;
+class Menus {
+    final JMenuBar jMenuBar = new JMenuBar ();
+    private JMenu fileMenu;
+    private JMenu helpMenu;
+    private JMenu editMenu;
 
     public Menus () {
         mainMenu ();
@@ -13,7 +15,7 @@ public class Menus {
         setHelpMenu ();
     }
 
-    public void mainMenu () {
+    private void mainMenu() {
         this.fileMenu = new JMenu ("File");
         this.helpMenu = new JMenu ("Help");
         this.editMenu = new JMenu ("Edit");
@@ -21,7 +23,7 @@ public class Menus {
         jMenuBar.add (helpMenu);
     }
 
-    public void setFileMenu () {
+    private void setFileMenu() {
         JMenuItem newItem = new JMenuItem ("New");
         JMenuItem openItem = new JMenuItem ("Open");
         JMenuItem saveItem = new JMenuItem ("Save");
@@ -35,14 +37,14 @@ public class Menus {
         this.fileMenu.add (editMenu);
     }
 
-    public void setHelpMenu () {
+    private void setHelpMenu() {
         JMenuItem helpItem = new JMenuItem ("Help");
         JMenuItem aboutItem = new JMenuItem ("About");
         this.helpMenu.add (helpItem);
         this.helpMenu.add (aboutItem);
     }
 
-    public void setEditMenu () {
+    private void setEditMenu() {
         JMenuItem cutItem = new JMenuItem ("Cut");
         JMenuItem copyItem = new JMenuItem ("Copy");
         JMenuItem pasteItem = new JMenuItem ("Paste");

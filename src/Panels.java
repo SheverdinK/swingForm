@@ -5,28 +5,36 @@ import java.awt.*;
 
 import static java.awt.Color.*;
 import static java.awt.FlowLayout.*;
-import static java.awt.FlowLayout.CENTER;
 
 /**
  * Created by sheverdinK on 20.11.2015.
  */
-public class Panels {
-    JPanel jPanel, bagPanel;
+class Panels {
+
+    private JPanel jPanel;
+//    Components
     JButton jButtonOK, jButtonClose;
     JTextField jTextFieldName;
     JCheckBox jCheckBoxDance, jCheckBoxMusic, jCheckBoxSport, jCheckBoxTV;
-    ButtonGroup buttonGroup;
+    private ButtonGroup buttonGroup;
     JRadioButton  jRadioButtonMarried, jRadioButtonSingle, jRadioButtonDivorced;
-    JLabel jLabel;
-public static  String myStatus;
+    JTextArea jTextArea;
+    private JLabel jLabel;
+//    URL
+    private  static final String USER_ICON  = "img\\icon.png";
+    private  static final String OK_ICON    = "img\\ok.jpg";
+    private  static final String CLOSE_ICON = "img\\close.jpg";
 
     public JPanel  southPanel () {
-        Icon iconButtonOK = new ImageIcon ("D:\\Limudim\\JhonBrice\\JAVA\\myProjectIdea\\swingForm\\img\\ok6.jpg");
-        Icon iconButtonClose = new ImageIcon ("D:\\Limudim\\JhonBrice\\JAVA\\myProjectIdea\\swingForm\\img\\close6.jpg");
-
+        Icon iconButtonOK = new ImageIcon (OK_ICON);
+        Icon iconButtonClose = new ImageIcon (CLOSE_ICON);
         this.jButtonOK = new JButton ("",iconButtonOK );
         this.jButtonClose = new JButton ("",iconButtonClose);
-        this.jPanel =  buildPanel (new FlowLayout (RIGHT), new LineBorder (black), new TitledBorder ("Name"), "Name", true);
+        this.jPanel =  buildPanel (
+                new FlowLayout (RIGHT),
+                new LineBorder (black),
+                new TitledBorder ("Control"), "Control",
+                true);
         jPanel.add (jButtonOK);
         jPanel.add (jButtonClose);
         return jPanel;
@@ -35,21 +43,28 @@ public static  String myStatus;
     public JPanel northPanel () {
         this.jTextFieldName = new JTextField ("", 50);
 
-        jPanel = buildPanel (new FlowLayout (CENTER), new LineBorder (black), new TitledBorder ("Name"), "Name", true);
+        jPanel = buildPanel (
+                new FlowLayout (CENTER),
+                new LineBorder (black),
+                new TitledBorder ("Name"), "Name",
+                true);
 
         jPanel.add (jTextFieldName);
-
         return jPanel;
     }
 
     public  JPanel westPanel () {
 
-        this.jPanel = buildPanel (new GridLayout (10, 1), new LineBorder (black), new TitledBorder ("Hobbies"), "Hobbies", true);
-
         jCheckBoxDance = new JCheckBox ("DANCE");
         jCheckBoxMusic = new JCheckBox ("MUSIC");
         jCheckBoxSport = new JCheckBox ("SPORT");
         jCheckBoxTV = new JCheckBox (" T V  ");
+
+        this.jPanel = buildPanel (
+                new GridLayout (10, 1),
+                new LineBorder (black),
+                new TitledBorder ("Hobbies"), "Hobbies",
+                true);
 
         jPanel.add (jCheckBoxDance);
         jPanel.add (jCheckBoxMusic);
@@ -60,24 +75,20 @@ public static  String myStatus;
     }
 
     public JPanel eastPanel () {
-
-       /* jRadioButtonMarried     = new JRadioButton ("Married", true);
-        myStatus = "Married";
-        jRadioButtonSingle      = new JRadioButton ("Single", false);
-        jRadioButtonDivorced    = new JRadioButton ("Divorced", false);*/
-
-
-
-        jRadioButtonMarried     = new JRadioButton ("Married");
-        jRadioButtonSingle      = new JRadioButton ("Single");
-        jRadioButtonDivorced    = new JRadioButton ("Divorced");
+        jRadioButtonMarried  = new JRadioButton ("Married");
+        jRadioButtonSingle   = new JRadioButton ("Single");
+        jRadioButtonDivorced = new JRadioButton ("Divorced");
 
         buttonGroup = new ButtonGroup ();
         buttonGroup.add (jRadioButtonMarried);
         buttonGroup.add(jRadioButtonSingle);
         buttonGroup.add (jRadioButtonDivorced);
 
-        jPanel= buildPanel (new GridLayout (10,1), new LineBorder (black), new TitledBorder ("State"), "State", true);
+        jPanel= buildPanel (
+                new GridLayout (10,1),
+                new LineBorder (black),
+                new TitledBorder ("State"), "State",
+                true);
 
         jPanel.add (jRadioButtonMarried);
         jPanel.add (jRadioButtonSingle);
@@ -88,18 +99,28 @@ public static  String myStatus;
 
     public JPanel centerPanel () {
 
-        Icon iconCenterPanel = new ImageIcon ("D:\\Limudim\\JhonBrice\\JAVA\\myProjectIdea\\swingForm\\img\\icon.png");
+        Icon iconCenterPanel = new ImageIcon (USER_ICON);
 
         jLabel = new JLabel (iconCenterPanel);
-
-        jPanel= buildPanel( new FlowLayout (), new LineBorder (black), new TitledBorder ("Profile Icon"), "Icon", true);
+        jTextArea = new JTextArea("ANSWER: \n");
+        jTextArea.setLineWrap(true);
+        jTextArea.setVisible(false);
+        jPanel= buildPanel(
+                new GridLayout (2,1),
+                new LineBorder (black),
+                new TitledBorder ("Profile Icon"), "Icon",
+                true);
 
         jPanel.add (jLabel);
-
+        jPanel.add(jTextArea);
         return jPanel;
     }
 
-    public JPanel buildPanel (LayoutManager layoutManager, LineBorder lineBorder, TitledBorder titledBorder, String name, boolean isVisible) {
+    private JPanel buildPanel(LayoutManager layoutManager,
+                              LineBorder lineBorder,
+                              TitledBorder titledBorder,
+                              String name,
+                              boolean isVisible) {
         this.jPanel = new JPanel ();
         jPanel.setLayout (layoutManager);
         jPanel.setBorder (lineBorder);
